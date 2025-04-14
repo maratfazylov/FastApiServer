@@ -1,66 +1,66 @@
-# FastAPI File Upload Server
+# Сервер загрузки файлов на FastAPI
 
-A FastAPI-based web server that handles file uploads with content validation and preview generation.
+Веб-сервер на основе FastAPI для загрузки файлов с валидацией содержимого и генерацией превью.
 
-## Features
+## Возможности
 
-- File upload with content-based validation (not just extension)
-- Support for images and videos
-- File retrieval by UUID
-- Optional thumbnail generation for images
+- Загрузка файлов с валидацией на основе содержимого (а не только расширения)
+- Поддержка изображений и видео
+- Получение файлов по UUID
+- Опциональная генерация превью для изображений
 
-## Requirements
+## Требования
 
 - Python 3.8+
-- Dependencies listed in requirements.txt
+- Зависимости, перечисленные в requirements.txt
 
-## Installation
+## Установка
 
-1. Clone this repository
-2. Install dependencies:
+1. Клонируйте этот репозиторий
+2. Установите зависимости:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Run the server:
+3. Запустите сервер:
 
 ```bash
 python server.py
 ```
 
-The server will be available at http://localhost:8000
+Сервер будет доступен по адресу http://localhost:8000
 
-## Testing the API
+## Тестирование API
 
-You can test the API using the provided Python script:
+Вы можете протестировать API с помощью предоставленного Python-скрипта:
 
 ```bash
 python test_api.py
 ```
 
-You'll need to provide test files:
-- `cat_video.mp4` - a sample video file
-- `cat_image.jpg` - a sample image file
+Вам понадобятся тестовые файлы:
+- `cat_video.mp4` - образец видеофайла
+- `cat_image.jpg` - образец файла изображения
 
-## API Endpoints
+## Эндпоинты API
 
-### Upload a File
+### Загрузка файла
 
-**Endpoint:** `PUT /api/upload`
+**Эндпоинт:** `PUT /api/upload`
 
-**Parameters:**
-- `file`: The file to upload (multipart form data)
-- `file_type`: Type of file, either 'image' or 'video'
+**Параметры:**
+- `file`: Загружаемый файл (multipart form data)
+- `file_type`: Тип файла, 'image' или 'video'
 
-**Example request:**
+**Пример запроса:**
 ```bash
 curl -X PUT "http://localhost:8000/api/upload?file_type=image" \
   -H "Content-Type: multipart/form-data" \
-  -F "file=@/path/to/your/image.jpg"
+  -F "file=@/путь/к/вашему/изображению.jpg"
 ```
 
-**Response:**
+**Ответ:**
 ```json
 {
   "uuid": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
@@ -71,45 +71,45 @@ curl -X PUT "http://localhost:8000/api/upload?file_type=image" \
 }
 ```
 
-### Get a File
+### Получение файла
 
-**Endpoint:** `GET /api/{file_uuid}`
+**Эндпоинт:** `GET /api/{file_uuid}`
 
-**Parameters:**
-- `file_uuid`: UUID of the file to retrieve
-- `width` (optional): Width for the thumbnail
-- `height` (optional): Height for the thumbnail
+**Параметры:**
+- `file_uuid`: UUID файла для получения
+- `width` (опционально): Ширина для превью
+- `height` (опционально): Высота для превью
 
-**Example requests:**
+**Примеры запросов:**
 
-Get original file:
+Получение оригинального файла:
 ```bash
 curl -X GET "http://localhost:8000/api/f47ac10b-58cc-4372-a567-0e02b2c3d479"
 ```
 
-Get thumbnail:
+Получение превью:
 ```bash
 curl -X GET "http://localhost:8000/api/f47ac10b-58cc-4372-a567-0e02b2c3d479?width=300&height=200"
 ```
 
-The response will be the file content with appropriate content type headers.
+Ответ будет содержать данные файла с соответствующими HTTP-заголовками типа контента.
 
-## Supported File Types
+## Поддерживаемые типы файлов
 
-### Images
+### Изображения
 - JPEG (image/jpeg)
 - PNG (image/png)
 - GIF (image/gif)
 - WebP (image/webp)
 
-### Videos
+### Видео
 - MP4 (video/mp4)
 - QuickTime (video/quicktime)
 - AVI (video/x-msvideo)
 - WebM (video/webm)
 
-## Notes
+## Примечания
 
-- Thumbnail generation is currently supported only for images.
-- File validation is done based on file content, not just extension.
-- Files are stored with their UUIDs as filenames. 
+- Генерация превью в настоящее время поддерживается только для изображений.
+- Валидация файлов выполняется на основе содержимого, а не только расширения.
+- Файлы хранятся с использованием UUID в качестве имени файла.
