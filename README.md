@@ -1,5 +1,3 @@
-https://static.wikia.nocookie.net/skibidi-toilet-fanon-v2/images/a/ad/Small_Skibidi_Toilet.webp/revision/latest?cb=20231202221053&path-prefix=ru
-https://assets.mixkit.co/videos/4103/4103-720.mp4
 # Сервер загрузки файлов на FastAPI
 
 Веб-сервер на основе FastAPI для загрузки файлов с валидацией содержимого и генерацией превью.
