@@ -1,0 +1,6 @@
+fastapi>=0.95.0
+uvicorn>=0.22.0
+python-multipart>=0.0.5
+pillow>=9.0.0
+aiofiles>=0.8.0
+filetype>=1.0.0
